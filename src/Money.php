@@ -238,9 +238,9 @@ final class Money implements JsonSerializable
      * @psalm-param int|numeric-string $multiplier
      * @psalm-param self::ROUND_*  $roundingMode
      */
-    public function multiply(int|string $multiplier, int $roundingMode = self::ROUND_HALF_UP): Money
+    public function multiply(int|float|string $multiplier, int $roundingMode = self::ROUND_HALF_UP): Money
     {
-        if (is_int($multiplier)) {
+        if (is_int($multiplier) || is_float($multiplier)) {
             $multiplier = (string) $multiplier;
         }
 
@@ -253,12 +253,12 @@ final class Money implements JsonSerializable
      * Returns a new Money object that represents
      * the divided value by the given factor.
      *
-     * @psalm-param int|numeric-string $divisor
+     * @psalm-param int|float|numeric-string $divisor
      * @psalm-param self::ROUND_*  $roundingMode
      */
-    public function divide(int|string $divisor, int $roundingMode = self::ROUND_HALF_UP): Money
+    public function divide(int|float|string $divisor, int $roundingMode = self::ROUND_HALF_UP): Money
     {
-        if (is_int($divisor)) {
+        if (is_int($divisor) || is_float($divisor)) {
             $divisor = (string) $divisor;
         }
 
