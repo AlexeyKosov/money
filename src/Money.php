@@ -569,4 +569,13 @@ final class Money implements JsonSerializable
     {
         return self::$calculator;
     }
+
+    public function __toString(): string
+    {
+        return sprintf(
+            '%s %s',
+            $this->currency->__toString(),
+            number_format($this->getAmountFloat(), $this->currency->getDefaultFractionDigits(), '.', '')
+        );
+    }
 }

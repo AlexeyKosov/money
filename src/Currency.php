@@ -6,6 +6,7 @@ namespace Money;
 
 use JsonSerializable;
 
+use Money\Currencies\ISOCurrencies;
 use function strtoupper;
 
 /**
@@ -57,5 +58,10 @@ final class Currency implements JsonSerializable
     public function jsonSerialize(): string
     {
         return $this->code;
+    }
+
+    public function getDefaultFractionDigits() : int
+    {
+        return (new ISOCurrencies())->subunitFor($this);
     }
 }
