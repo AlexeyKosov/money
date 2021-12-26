@@ -111,6 +111,15 @@ final class Money implements JsonSerializable
     }
 
     /**
+     * @return float
+     */
+    public function getAmountFloat(): float
+    {
+        $decimals = (new ISOCurrencies())->subunitFor($this->currency);
+        return (float)$this->amount / 10**$decimals;
+    }
+
+    /**
      * Checks whether a Money has the same Currency as this.
      */
     public function isSameCurrency(Money ...$others): bool
