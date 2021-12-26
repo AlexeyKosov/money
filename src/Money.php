@@ -111,6 +111,21 @@ final class Money implements JsonSerializable
     }
 
     /**
+     * @param int|float|string $minorAmount
+     * @param Currency|string  $currency
+     *
+     * @return Money
+     */
+    public static function ofMinor(int|float|string $minorAmount, Currency|string $currency): Money
+    {
+        if (is_string($currency)) {
+            $currency = new Currency($currency);
+        }
+
+        return new Money((string)$minorAmount, $currency);
+    }
+
+    /**
      * @return float
      */
     public function getAmountFloat(): float
