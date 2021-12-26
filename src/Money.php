@@ -105,8 +105,9 @@ final class Money implements JsonSerializable
         }
 
         $decimals = (new ISOCurrencies())->subunitFor($currency);
+        $amountInt = (int)((float)$amount * 10**$decimals);
 
-        return new Money((float)$amount * 10**$decimals, $currency);
+        return new Money($amountInt, $currency);
     }
 
     /**
