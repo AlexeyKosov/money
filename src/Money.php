@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use JsonSerializable;
 use Money\Calculator\BcMathCalculator;
 
+use Money\Currencies\ISOCurrencies;
 use function array_fill;
 use function array_keys;
 use function array_map;
@@ -89,6 +90,23 @@ final class Money implements JsonSerializable
         }
 
         $this->amount = (string) $amount;
+    }
+
+    /**
+     * @param int|float|string $amount
+     * @param Currency|string  $currency
+     *
+     * @return Money
+     */
+    public static function of(int|float|string $amount, Currency|string $currency): Money
+    {
+        if (is_string($currency)) {
+            $currency = new Currency($currency);
+        }
+
+        $decimals = (new ISOCurrencies())->subunitFor($currency);
+
+        return new Money((float)$amount * 10**$decimals, $currency);
     }
 
     /**
