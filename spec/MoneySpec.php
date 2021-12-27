@@ -132,7 +132,7 @@ final class MoneySpec extends ObjectBehavior
                 foreach ($subject as $key => $money) {
                     assert($money instanceof Money);
                     $compareTo = new Money($value[$key], $money->getCurrency());
-                    if ($money->equals($compareTo) === false) {
+                    if ($money->isEqualTo($compareTo) === false) {
                         return false;
                     }
                 }

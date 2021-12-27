@@ -67,7 +67,7 @@ final class IntlMoneyParserTest extends TestCase
         $parser = new IntlMoneyParser($formatter, new ISOCurrencies());
         $money  = $parser->parse('$1000.00');
 
-        self::assertTrue(Money::CAD(100000)->equals($money));
+        self::assertTrue(Money::CAD(100000)->isEqualTo($money));
     }
 
     /**

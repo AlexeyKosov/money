@@ -87,12 +87,12 @@ final class MoneyOperationBench
 
     public function benchAbsolute(): void
     {
-        $this->a->absolute();
+        $this->a->abs();
     }
 
     public function benchNegative(): void
     {
-        $this->a->negative();
+        $this->a->negated();
     }
 
     public function benchIsPositive(): void
@@ -107,26 +107,26 @@ final class MoneyOperationBench
 
     public function benchLessThan(): void
     {
-        $this->a->lessThan($this->b);
+        $this->a->isLessThan($this->b);
     }
 
     public function benchLessThanOrEqual(): void
     {
-        $this->a->lessThanOrEqual($this->b);
+        $this->a->isLessThanOrEqualTo($this->b);
     }
 
     public function benchEquals(): void
     {
-        $this->a->equals($this->b);
+        $this->a->isEqualTo($this->b);
     }
 
     public function benchGreaterThan(): void
     {
-        $this->a->greaterThan($this->b);
+        $this->a->isGreaterThan($this->b);
     }
 
     public function benchGreaterThanOrEqual(): void
     {
-        $this->a->greaterThanOrEqual($this->b);
+        $this->a->isGreaterThanOrEqualTo($this->b);
     }
 }

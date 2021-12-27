@@ -64,7 +64,7 @@ final class IntlLocalizedDecimalParserTest extends TestCase
         $parser = new IntlLocalizedDecimalParser($formatter, new ISOCurrencies());
         $money  = $parser->parse('1000.00', new Currency('CAD'));
 
-        self::assertTrue(Money::CAD(100000)->equals($money));
+        self::assertTrue(Money::CAD(100000)->isEqualTo($money));
     }
 
     /**

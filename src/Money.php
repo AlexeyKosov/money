@@ -157,7 +157,7 @@ final class Money implements JsonSerializable
     /**
      * Checks whether the value represented by this object equals to the other.
      */
-    public function equals(Money $other): bool
+    public function isEqualTo(Money $other): bool
     {
         // Note: non-strict equality is intentional here, since `Currency` is `final` and reliable.
         if ($this->currency != $other->currency) {
@@ -192,12 +192,12 @@ final class Money implements JsonSerializable
     /**
      * Checks whether the value represented by this object is greater than the other.
      */
-    public function greaterThan(Money $other): bool
+    public function isGreaterThan(Money $other): bool
     {
         return $this->compare($other) > 0;
     }
 
-    public function greaterThanOrEqual(Money $other): bool
+    public function isGreaterThanOrEqualTo(Money $other): bool
     {
         return $this->compare($other) >= 0;
     }
@@ -205,12 +205,12 @@ final class Money implements JsonSerializable
     /**
      * Checks whether the value represented by this object is less than the other.
      */
-    public function lessThan(Money $other): bool
+    public function isLessThan(Money $other): bool
     {
         return $this->compare($other) < 0;
     }
 
-    public function lessThanOrEqual(Money $other): bool
+    public function isLessThanOrEqualTo(Money $other): bool
     {
         return $this->compare($other) <= 0;
     }
@@ -458,7 +458,7 @@ final class Money implements JsonSerializable
         return new self($result, $this->currency);
     }
 
-    public function absolute(): Money
+    public function abs(): Money
     {
         return new self(
             self::$calculator::absolute($this->amount),
@@ -466,7 +466,7 @@ final class Money implements JsonSerializable
         );
     }
 
-    public function negative(): Money
+    public function negated(): Money
     {
         return (new self(0, $this->currency))
             ->minus($this);
@@ -520,7 +520,7 @@ final class Money implements JsonSerializable
         $min = $first;
 
         foreach ($collection as $money) {
-            if (! $money->lessThan($min)) {
+            if (! $money->isLessThan($min)) {
                 continue;
             }
 
@@ -541,7 +541,7 @@ final class Money implements JsonSerializable
         $max = $first;
 
         foreach ($collection as $money) {
-            if (! $money->greaterThan($max)) {
+            if (! $money->isGreaterThan($max)) {
                 continue;
             }
 

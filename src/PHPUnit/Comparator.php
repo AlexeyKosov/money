@@ -59,7 +59,7 @@ final class Comparator extends \SebastianBergmann\Comparator\Comparator
         assert($expected instanceof Money);
         assert($actual instanceof Money);
 
-        if (! $expected->equals($actual)) {
+        if (! $expected->isEqualTo($actual)) {
             throw new ComparisonFailure($expected, $actual, $this->formatter->format($expected), $this->formatter->format($actual), false, 'Failed asserting that two Money objects are equal.');
         }
     }

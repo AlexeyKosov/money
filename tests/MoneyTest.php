@@ -39,7 +39,7 @@ final class MoneyTest extends TestCase
     {
         $money = new Money(self::AMOUNT, new Currency(self::CURRENCY));
 
-        self::assertEquals($equality, $money->equals(new Money($amount, $currency)));
+        self::assertEquals($equality, $money->isEqualTo(new Money($amount, $currency)));
     }
 
     /** @test */
@@ -65,10 +65,10 @@ final class MoneyTest extends TestCase
         $other = new Money($other, new Currency(self::CURRENCY));
 
         self::assertEquals($result, $money->compare($other));
-        self::assertEquals($result === 1, $money->greaterThan($other));
-        self::assertEquals(0 <= $result, $money->greaterThanOrEqual($other));
-        self::assertEquals($result === -1, $money->lessThan($other));
-        self::assertEquals(0 >= $result, $money->lessThanOrEqual($other));
+        self::assertEquals($result === 1, $money->isGreaterThan($other));
+        self::assertEquals(0 <= $result, $money->isGreaterThanOrEqualTo($other));
+        self::assertEquals($result === -1, $money->isLessThan($other));
+        self::assertEquals(0 >= $result, $money->isLessThanOrEqualTo($other));
 
         if ($result === 0) {
             self::assertEquals($money, $other);
@@ -147,7 +147,7 @@ final class MoneyTest extends TestCase
         foreach ($allocated as $key => $money) {
             $compareTo = new Money($results[$key], $money->getCurrency());
 
-            self::assertTrue($money->equals($compareTo));
+            self::assertTrue($money->isEqualTo($compareTo));
         }
     }
 
@@ -188,7 +188,7 @@ final class MoneyTest extends TestCase
         foreach ($allocated as $key => $money) {
             $compareTo = new Money($results[$key], $money->getCurrency());
 
-            self::assertTrue($money->equals($compareTo));
+            self::assertTrue($money->isEqualTo($compareTo));
         }
     }
 
@@ -218,7 +218,7 @@ final class MoneyTest extends TestCase
     {
         $money = new Money($amount, new Currency(self::CURRENCY));
 
-        $money = $money->absolute();
+        $money = $money->abs();
 
         self::assertEquals($result, $money->getAmount());
     }
@@ -234,7 +234,7 @@ final class MoneyTest extends TestCase
     {
         $money = new Money($amount, new Currency(self::CURRENCY));
 
-        $money = $money->negative();
+        $money = $money->negated();
 
         self::assertEquals($result, $money->getAmount());
     }

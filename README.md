@@ -26,9 +26,9 @@ $fiveEur = Money::EUR(500);
 $tenEur = $fiveEur->plus($fiveEur);
 
 list($part1, $part2, $part3) = $tenEur->allocate([1, 1, 1]);
-assert($part1->equals(Money::EUR(334)));
-assert($part2->equals(Money::EUR(333)));
-assert($part3->equals(Money::EUR(333)));
+assert($part1->isEqualTo(Money::EUR(334)));
+assert($part2->isEqualTo(Money::EUR(333)));
+assert($part3->isEqualTo(Money::EUR(333)));
 ```
 
 The documentation is available at http://moneyphp.org
