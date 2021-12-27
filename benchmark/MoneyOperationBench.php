@@ -27,12 +27,12 @@ final class MoneyOperationBench
 
     public function benchAdd(): void
     {
-        $this->a->add($this->b);
+        $this->a->plus($this->b);
     }
 
     public function benchSubtract(): void
     {
-        $this->a->subtract($this->b);
+        $this->a->minus($this->b);
     }
 
     public function benchMultiply(): void

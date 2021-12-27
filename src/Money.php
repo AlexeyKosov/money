@@ -239,7 +239,7 @@ final class Money implements JsonSerializable
      *
      * @param Money[] $addends
      */
-    public function add(Money ...$addends): Money
+    public function plus(Money ...$addends): Money
     {
         $amount = $this->amount;
 
@@ -263,7 +263,7 @@ final class Money implements JsonSerializable
      *
      * @psalm-pure
      */
-    public function subtract(Money ...$subtrahends): Money
+    public function minus(Money ...$subtrahends): Money
     {
         $amount = $this->amount;
 
@@ -469,7 +469,7 @@ final class Money implements JsonSerializable
     public function negative(): Money
     {
         return (new self(0, $this->currency))
-            ->subtract($this);
+            ->minus($this);
     }
 
     /**
@@ -554,13 +554,13 @@ final class Money implements JsonSerializable
     /** @psalm-pure */
     public static function sum(self $first, self ...$collection): Money
     {
-        return $first->add(...$collection);
+        return $first->plus(...$collection);
     }
 
     /** @psalm-pure */
     public static function avg(self $first, self ...$collection): Money
     {
-        return $first->add(...$collection)->divide((string) (count($collection) + 1));
+        return $first->plus(...$collection)->divide((string) (count($collection) + 1));
     }
 
     /** @psalm-param class-string<Calculator> $calculator */

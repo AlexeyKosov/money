@@ -282,8 +282,8 @@ final class MoneyTest extends TestCase
         $one = new Money(1, new Currency('EUR'));
 
         self::assertInstanceOf(Money::class, new Money(PHP_INT_MAX, new Currency('EUR')));
-        self::assertInstanceOf(Money::class, (new Money(PHP_INT_MAX, new Currency('EUR')))->add($one));
-        self::assertInstanceOf(Money::class, (new Money(PHP_INT_MAX, new Currency('EUR')))->subtract($one));
+        self::assertInstanceOf(Money::class, (new Money(PHP_INT_MAX, new Currency('EUR')))->plus($one));
+        self::assertInstanceOf(Money::class, (new Money(PHP_INT_MAX, new Currency('EUR')))->minus($one));
     }
 
     /**
