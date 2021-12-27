@@ -64,7 +64,7 @@ final class MoneyTest extends TestCase
         $money = new Money(self::AMOUNT, new Currency(self::CURRENCY));
         $other = new Money($other, new Currency(self::CURRENCY));
 
-        self::assertEquals($result, $money->compare($other));
+        self::assertEquals($result, $money->compareTo($other));
         self::assertEquals($result === 1, $money->isGreaterThan($other));
         self::assertEquals(0 <= $result, $money->isGreaterThanOrEqualTo($other));
         self::assertEquals($result === -1, $money->isLessThan($other));

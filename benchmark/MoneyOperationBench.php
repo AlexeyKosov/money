@@ -102,7 +102,7 @@ final class MoneyOperationBench
 
     public function benchCompare(): void
     {
-        $this->a->compare($this->b);
+        $this->a->compareTo($this->b);
     }
 
     public function benchLessThan(): void

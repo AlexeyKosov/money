@@ -171,7 +171,7 @@ final class Money implements JsonSerializable
         // @TODO do we want Money instance to be byte-equivalent when trailing zeroes exist? Very expensive!
         // Assumption: Money#equals() is called **less** than other number-based comparisons, and probably
         // only within test suites. Therefore, using complex normalization here is acceptable waste of performance.
-        return $this->compare($other) === 0;
+        return $this->compareTo($other) === 0;
     }
 
     /**
@@ -179,7 +179,7 @@ final class Money implements JsonSerializable
      * if the value of this object is considered to be respectively
      * less than, equal to, or greater than the other.
      */
-    public function compare(Money $other): int
+    public function compareTo(Money $other): int
     {
         // Note: non-strict equality is intentional here, since `Currency` is `final` and reliable.
         if ($this->currency != $other->currency) {
@@ -194,12 +194,12 @@ final class Money implements JsonSerializable
      */
     public function isGreaterThan(Money $other): bool
     {
-        return $this->compare($other) > 0;
+        return $this->compareTo($other) > 0;
     }
 
     public function isGreaterThanOrEqualTo(Money $other): bool
     {
-        return $this->compare($other) >= 0;
+        return $this->compareTo($other) >= 0;
     }
 
     /**
@@ -207,12 +207,12 @@ final class Money implements JsonSerializable
      */
     public function isLessThan(Money $other): bool
     {
-        return $this->compare($other) < 0;
+        return $this->compareTo($other) < 0;
     }
 
     public function isLessThanOrEqualTo(Money $other): bool
     {
-        return $this->compare($other) <= 0;
+        return $this->compareTo($other) <= 0;
     }
 
     public function getAmount() : BigDecimal
