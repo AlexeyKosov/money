@@ -33,11 +33,21 @@ final class Currency implements JsonSerializable
     }
 
     /**
+     * @param string $code
+     *
+     * @return static
+     */
+    public static function of(string $code): self
+    {
+        return new self($code);
+    }
+
+    /**
      * Returns the currency code.
      *
      * @psalm-return non-empty-string
      */
-    public function getCode(): string
+    public function getCurrencyCode(): string
     {
         return $this->code;
     }
@@ -45,7 +55,7 @@ final class Currency implements JsonSerializable
     /**
      * Checks whether this currency is the same as an other.
      */
-    public function equals(Currency $other): bool
+    public function is(Currency $other): bool
     {
         return $this->code === $other->code;
     }

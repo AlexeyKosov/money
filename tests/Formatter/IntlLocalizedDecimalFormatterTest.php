@@ -34,7 +34,7 @@ final class IntlLocalizedDecimalFormatterTest extends TestCase
         $currencies = $this->createMock(Currencies::class);
 
         $currencies->method('subunitFor')
-            ->with(self::callback(static fn (Currency $givenCurrency): bool => $currency === $givenCurrency->getCode()))
+            ->with(self::callback(static fn (Currency $givenCurrency): bool => $currency === $givenCurrency->getCurrencyCode()))
             ->willReturn($subunit);
 
         $moneyFormatter = new IntlLocalizedDecimalFormatter($numberFormatter, $currencies);

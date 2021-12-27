@@ -42,7 +42,7 @@ final class ReversedCurrenciesExchangeTest extends TestCase
         $wrappedExchange->method('quote')
             ->willReturnCallback(static function (Currency $givenBase, Currency $givenCounter) use ($base
             ): CurrencyPair {
-                if ($givenBase->equals($base)) {
+                if ($givenBase->is($base)) {
                     throw new UnresolvableCurrencyPairException();
                 }
 
@@ -68,7 +68,7 @@ final class ReversedCurrenciesExchangeTest extends TestCase
         $wrappedExchange->method('quote')
             ->willReturnCallback(static function (Currency $givenBase) use ($exception2, $exception1, $base
             ): CurrencyPair {
-                if ($givenBase->equals($base)) {
+                if ($givenBase->is($base)) {
                     throw $exception1;
                 }
 

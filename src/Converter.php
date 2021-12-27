@@ -48,12 +48,12 @@ final class Converter
 
     public function convertAgainstCurrencyPair(Money $money, CurrencyPair $currencyPair, int $roundingMode = Money::ROUND_HALF_UP): Money
     {
-        if (! $money->getCurrency()->equals($currencyPair->getBaseCurrency())) {
+        if (! $money->getCurrency()->is($currencyPair->getBaseCurrency())) {
             throw new InvalidArgumentException(
                 sprintf(
                     'Expecting to convert against base currency %s, but got %s instead',
-                    $money->getCurrency()->getCode(),
-                    $currencyPair->getBaseCurrency()->getCode()
+                    $money->getCurrency()->getCurrencyCode(),
+                    $currencyPair->getBaseCurrency()->getCurrencyCode()
                 )
             );
         }

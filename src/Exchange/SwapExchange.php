@@ -26,7 +26,7 @@ final class SwapExchange implements Exchange
     public function quote(Currency $baseCurrency, Currency $counterCurrency): CurrencyPair
     {
         try {
-            $rate = $this->swap->latest($baseCurrency->getCode() . '/' . $counterCurrency->getCode());
+            $rate = $this->swap->latest($baseCurrency->getCurrencyCode().'/'.$counterCurrency->getCurrencyCode());
         } catch (ExchangerException) {
             throw UnresolvableCurrencyPairException::createFromCurrencies($baseCurrency, $counterCurrency);
         }

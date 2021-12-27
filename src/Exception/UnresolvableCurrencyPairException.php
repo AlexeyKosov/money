@@ -22,8 +22,8 @@ final class UnresolvableCurrencyPairException extends InvalidArgumentException i
     {
         $message = sprintf(
             'Cannot resolve a currency pair for currencies: %s/%s',
-            $baseCurrency->getCode(),
-            $counterCurrency->getCode()
+            $baseCurrency->getCurrencyCode(),
+            $counterCurrency->getCurrencyCode()
         );
 
         return new self($message);

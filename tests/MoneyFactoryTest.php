@@ -20,7 +20,7 @@ final class MoneyFactoryTest extends TestCase
      */
     public function itCreatesMoneyUsingFactories(Currency $currency): void
     {
-        $code  = $currency->getCode();
+        $code  = $currency->getCurrencyCode();
         $money = Money::{$code}(20);
 
         self::assertInstanceOf(Money::class, $money);

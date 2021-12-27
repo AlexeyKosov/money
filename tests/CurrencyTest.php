@@ -25,6 +25,6 @@ final class CurrencyTest extends TestCase
      */
     public function itAppliesUppercase(): void
     {
-        self::assertEquals('USD', (new Currency('usd'))->getCode());
+        self::assertEquals('USD', (new Currency('usd'))->getCurrencyCode());
     }
 }

@@ -30,7 +30,7 @@ final class IntlLocalizedDecimalParserTest extends TestCase
         $currencies = $this->createMock(Currencies::class);
 
         $currencies->method('subunitFor')
-            ->with(self::callback(static fn (Currency $givenCurrency): bool => 'USD' === $givenCurrency->getCode()))
+            ->with(self::callback(static fn (Currency $givenCurrency): bool => 'USD' === $givenCurrency->getCurrencyCode()))
             ->willReturn(2);
 
         $currencyCode = 'USD';
@@ -79,7 +79,7 @@ final class IntlLocalizedDecimalParserTest extends TestCase
         $money    = $parser->parse('1000.00', $currency);
 
         self::assertSame('100000', $money->getAmountString());
-        self::assertSame('CAD', $money->getCurrency()->getCode());
+        self::assertSame('CAD', $money->getCurrency()->getCurrencyCode());
     }
 
     /**

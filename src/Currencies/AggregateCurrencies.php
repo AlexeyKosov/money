@@ -45,7 +45,7 @@ final class AggregateCurrencies implements Currencies
             }
         }
 
-        throw new UnknownCurrencyException('Cannot find currency ' . $currency->getCode());
+        throw new UnknownCurrencyException('Cannot find currency ' . $currency->getCurrencyCode());
     }
 
     /** {@inheritDoc} */

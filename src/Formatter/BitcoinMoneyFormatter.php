@@ -33,7 +33,7 @@ final class BitcoinMoneyFormatter implements MoneyFormatter
 
     public function format(Money $money): string
     {
-        if ($money->getCurrency()->getCode() !== BitcoinCurrencies::CODE) {
+        if ($money->getCurrency()->getCurrencyCode() !== BitcoinCurrencies::CODE) {
             throw new FormatterException('Bitcoin Formatter can only format Bitcoin currency');
         }
 

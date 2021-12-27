@@ -31,7 +31,7 @@ final class CachedCurrencies implements Currencies
 
     public function contains(Currency $currency): bool
     {
-        $item = $this->pool->getItem('currency|availability|' . $currency->getCode());
+        $item = $this->pool->getItem('currency|availability|' . $currency->getCurrencyCode());
 
         if ($item->isHit() === false) {
             $item->set($this->currencies->contains($currency));
@@ -48,7 +48,7 @@ final class CachedCurrencies implements Currencies
 
     public function subunitFor(Currency $currency): int
     {
-        $item = $this->pool->getItem('currency|subunit|' . $currency->getCode());
+        $item = $this->pool->getItem('currency|subunit|' . $currency->getCurrencyCode());
 
         if ($item->isHit() === false) {
             $item->set($this->currencies->subunitFor($currency));
@@ -69,7 +69,7 @@ final class CachedCurrencies implements Currencies
         return new CallbackFilterIterator(
             new ArrayIterator(iterator_to_array($this->currencies->getIterator())),
             function (Currency $currency): bool {
-                $item = $this->pool->getItem('currency|availability|' . $currency->getCode());
+                $item = $this->pool->getItem('currency|availability|' . $currency->getCurrencyCode());
                 $item->set(true);
 
                 if ($item instanceof TaggableCacheItemInterface) {

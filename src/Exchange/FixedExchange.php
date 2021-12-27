@@ -25,11 +25,11 @@ final class FixedExchange implements Exchange
 
     public function quote(Currency $baseCurrency, Currency $counterCurrency): CurrencyPair
     {
-        if (isset($this->list[$baseCurrency->getCode()][$counterCurrency->getCode()])) {
+        if (isset($this->list[$baseCurrency->getCurrencyCode()][$counterCurrency->getCurrencyCode()])) {
             return new CurrencyPair(
                 $baseCurrency,
                 $counterCurrency,
-                $this->list[$baseCurrency->getCode()][$counterCurrency->getCode()]
+                $this->list[$baseCurrency->getCurrencyCode()][$counterCurrency->getCurrencyCode()]
             );
         }
 

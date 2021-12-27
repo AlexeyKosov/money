@@ -28,7 +28,7 @@ final class BitcoinMoneyParserTest extends TestCase
 
         self::assertInstanceOf(Money::class, $money);
         self::assertEquals($units, $money->getAmountString());
-        self::assertEquals(BitcoinCurrencies::CODE, $money->getCurrency()->getCode());
+        self::assertEquals(BitcoinCurrencies::CODE, $money->getCurrency()->getCurrencyCode());
     }
 
     /**
@@ -42,7 +42,7 @@ final class BitcoinMoneyParserTest extends TestCase
 
         self::assertInstanceOf(Money::class, $money);
         self::assertEquals('25', $money->getAmountString());
-        self::assertEquals('ETH', $money->getCurrency()->getCode());
+        self::assertEquals('ETH', $money->getCurrency()->getCurrencyCode());
     }
 
     /**

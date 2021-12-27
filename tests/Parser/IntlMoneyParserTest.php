@@ -30,7 +30,7 @@ final class IntlMoneyParserTest extends TestCase
         $currencies = $this->createMock(Currencies::class);
 
         $currencies->method('subunitFor')
-            ->with(self::callback(static fn (Currency $givenCurrency): bool => 'USD' === $givenCurrency->getCode()))
+            ->with(self::callback(static fn (Currency $givenCurrency): bool => 'USD' === $givenCurrency->getCurrencyCode()))
             ->willReturn(2);
 
         $currencyCode = 'USD';
@@ -84,7 +84,7 @@ final class IntlMoneyParserTest extends TestCase
         $money        = $parser->parse('$1000.00', $currency);
 
         self::assertEquals('100000', $money->getAmountString());
-        self::assertEquals('CAD', $money->getCurrency()->getCode());
+        self::assertEquals('CAD', $money->getCurrency()->getCurrencyCode());
     }
 
     /**

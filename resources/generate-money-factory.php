@@ -54,11 +54,11 @@ PHP;
         new Currencies\BitcoinCurrencies(),
     ]));
 
-    usort($currencies, static fn (Currency $a, Currency $b): int => strcmp($a->getCode(), $b->getCode()));
+    usort($currencies, static fn (Currency $a, Currency $b): int => strcmp($a->getCurrencyCode(), $b->getCurrencyCode()));
 
     /** @var Currency[] $currencies */
     foreach ($currencies as $currency) {
-        $methodBuffer .= sprintf(" * @method static Money %s(numeric-string|int \$amount)\n", $currency->getCode());
+        $methodBuffer .= sprintf(" * @method static Money %s(numeric-string|int \$amount)\n", $currency->getCurrencyCode());
     }
 
     $buffer = str_replace('PHPDOC', rtrim($methodBuffer), $buffer);

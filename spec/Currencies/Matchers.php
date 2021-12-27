@@ -20,7 +20,7 @@ trait Matchers
 
                 foreach ($subject as $currency) {
                     assert($currency instanceof Currency);
-                    if ($currency->getCode() === $value) {
+                    if ($currency->getCurrencyCode() === $value) {
                         return true;
                     }
                 }

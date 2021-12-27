@@ -33,7 +33,7 @@ final class ExchangerExchange implements Exchange
     {
         try {
             $query = new ExchangeRateQuery(
-                new ExchangerCurrencyPair($baseCurrency->getCode(), $counterCurrency->getCode())
+                new ExchangerCurrencyPair($baseCurrency->getCurrencyCode(), $counterCurrency->getCurrencyCode())
             );
             $rate  = $this->exchanger->getExchangeRate($query);
         } catch (ExchangerException) {

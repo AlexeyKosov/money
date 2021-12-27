@@ -18,13 +18,13 @@ final class BitcoinCurrencies implements Currencies
 
     public function contains(Currency $currency): bool
     {
-        return $currency->getCode() === self::CODE;
+        return $currency->getCurrencyCode() === self::CODE;
     }
 
     public function subunitFor(Currency $currency): int
     {
-        if ($currency->getCode() !== self::CODE) {
-            throw new UnknownCurrencyException($currency->getCode() . ' is not bitcoin and is not supported by this currency repository');
+        if ($currency->getCurrencyCode() !== self::CODE) {
+            throw new UnknownCurrencyException($currency->getCurrencyCode().' is not bitcoin and is not supported by this currency repository');
         }
 
         return 8;

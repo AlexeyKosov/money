@@ -34,16 +34,16 @@ final class ISOCurrencies implements Currencies
 
     public function contains(Currency $currency): bool
     {
-        return isset($this->getCurrencies()[$currency->getCode()]);
+        return isset($this->getCurrencies()[$currency->getCurrencyCode()]);
     }
 
     public function subunitFor(Currency $currency): int
     {
         if (! $this->contains($currency)) {
-            throw new UnknownCurrencyException('Cannot find ISO currency ' . $currency->getCode());
+            throw new UnknownCurrencyException('Cannot find ISO currency ' . $currency->getCurrencyCode());
         }
 
-        return $this->getCurrencies()[$currency->getCode()]['minorUnit'];
+        return $this->getCurrencies()[$currency->getCurrencyCode()]['minorUnit'];
     }
 
     /**
@@ -54,10 +54,10 @@ final class ISOCurrencies implements Currencies
     public function numericCodeFor(Currency $currency): int
     {
         if (! $this->contains($currency)) {
-            throw new UnknownCurrencyException('Cannot find ISO currency ' . $currency->getCode());
+            throw new UnknownCurrencyException('Cannot find ISO currency ' . $currency->getCurrencyCode());
         }
 
-        return $this->getCurrencies()[$currency->getCode()]['numericCode'];
+        return $this->getCurrencies()[$currency->getCurrencyCode()]['numericCode'];
     }
 
     /**

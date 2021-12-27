@@ -26,7 +26,7 @@ final class DecimalMoneyParserTest extends TestCase
         $currencies = $this->createMock(Currencies::class);
 
         $currencies->method('subunitFor')
-            ->with(self::callback(static fn (Currency $givenCurrency): bool => $currency === $givenCurrency->getCode()))
+            ->with(self::callback(static fn (Currency $givenCurrency): bool => $currency === $givenCurrency->getCurrencyCode()))
             ->willReturn($subunit);
 
         $parser = new DecimalMoneyParser($currencies);
@@ -45,7 +45,7 @@ final class DecimalMoneyParserTest extends TestCase
         $currencies = $this->createMock(Currencies::class);
 
         $currencies->method('subunitFor')
-            ->with(self::callback(static fn (Currency $givenCurrency): bool => 'USD' === $givenCurrency->getCode()))
+            ->with(self::callback(static fn (Currency $givenCurrency): bool => 'USD' === $givenCurrency->getCurrencyCode()))
             ->willReturn(2);
 
         $parser = new DecimalMoneyParser($currencies);

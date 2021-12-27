@@ -30,7 +30,7 @@ final class AggregateMoneyFormatter implements MoneyFormatter
 
     public function format(Money $money): string
     {
-        $currencyCode = $money->getCurrency()->getCode();
+        $currencyCode = $money->getCurrency()->getCurrencyCode();
 
         if (isset($this->formatters[$currencyCode])) {
             return $this->formatters[$currencyCode]->format($money);

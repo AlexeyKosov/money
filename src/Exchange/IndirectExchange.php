@@ -65,7 +65,7 @@ final class IndirectExchange implements Exchange
         $startNode->discovered = true;
 
         /** @psalm-var array<non-empty-string, IndirectExchangeQueuedItem> $nodes */
-        $nodes = [$baseCurrency->getCode() => $startNode];
+        $nodes = [$baseCurrency->getCurrencyCode() => $startNode];
 
         /** @psam-var SplQueue<IndirectExchangeQueuedItem> $frontier */
         $frontier = new SplQueue();
@@ -76,7 +76,7 @@ final class IndirectExchange implements Exchange
             $currentNode     = $frontier->dequeue();
             $currentCurrency = $currentNode->currency;
 
-            if ($currentCurrency->equals($counterCurrency)) {
+            if ($currentCurrency->is($counterCurrency)) {
                 return $this->reconstructConversionChain($nodes, $currentNode);
             }
 
@@ -120,7 +120,7 @@ final class IndirectExchange implements Exchange
         $conversions = [];
 
         while ($current->parent) {
-            $previous      = $currencies[$current->parent->currency->getCode()];
+            $previous      = $currencies[$current->parent->currency->getCurrencyCode()];
             $conversions[] = $this->exchange->quote($previous->currency, $current->currency);
             $current       = $previous;
         }

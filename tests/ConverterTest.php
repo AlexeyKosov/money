@@ -55,7 +55,7 @@ final class ConverterTest extends TestCase
         $currencies->method('subunitFor')
             ->with(self::logicalOr(self::equalTo($baseCurrency), self::equalTo($counterCurrency)))
             ->willReturnCallback(
-                static fn (Currency $currency): int => $currency->equals($baseCurrency) ? $subunitBase : $subunitCounter
+                static fn (Currency $currency): int => $currency->is($baseCurrency) ? $subunitBase : $subunitCounter
             );
 
         $exchange->method('quote')
@@ -68,7 +68,7 @@ final class ConverterTest extends TestCase
         );
 
         self::assertEquals($expectedAmount, $money->getAmountString());
-        self::assertEquals($counterCurrencyCode, $money->getCurrency()->getCode());
+        self::assertEquals($counterCurrencyCode, $money->getCurrency()->getCurrencyCode());
     }
 
     /**
@@ -106,7 +106,7 @@ final class ConverterTest extends TestCase
         $currencies->method('subunitFor')
             ->with(self::logicalOr(self::equalTo($baseCurrency), self::equalTo($counterCurrency)))
             ->willReturnCallback(
-                static fn (Currency $currency): int => $currency->equals($baseCurrency) ? $subunitBase : $subunitCounter
+                static fn (Currency $currency): int => $currency->is($baseCurrency) ? $subunitBase : $subunitCounter
             );
 
         $exchange->method('quote')
@@ -159,7 +159,7 @@ final class ConverterTest extends TestCase
         $currencies->method('subunitFor')
             ->with(self::logicalOr(self::equalTo($baseCurrency), self::equalTo($counterCurrency)))
             ->willReturnCallback(
-                static fn (Currency $currency): int => $currency->equals($baseCurrency) ? $subunitBase : $subunitCounter
+                static fn (Currency $currency): int => $currency->is($baseCurrency) ? $subunitBase : $subunitCounter
             );
 
         $money = $converter->convertAgainstCurrencyPair(
@@ -168,7 +168,7 @@ final class ConverterTest extends TestCase
         );
 
         self::assertEquals($expectedAmount, $money->getAmountString());
-        self::assertEquals($counterCurrencyCode, $money->getCurrency()->getCode());
+        self::assertEquals($counterCurrencyCode, $money->getCurrency()->getCurrencyCode());
     }
 
     /**

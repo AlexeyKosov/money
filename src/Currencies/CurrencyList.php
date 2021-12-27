@@ -33,16 +33,16 @@ final class CurrencyList implements Currencies
 
     public function contains(Currency $currency): bool
     {
-        return isset($this->currencies[$currency->getCode()]);
+        return isset($this->currencies[$currency->getCurrencyCode()]);
     }
 
     public function subunitFor(Currency $currency): int
     {
         if (! $this->contains($currency)) {
-            throw new UnknownCurrencyException('Cannot find currency ' . $currency->getCode());
+            throw new UnknownCurrencyException('Cannot find currency ' . $currency->getCurrencyCode());
         }
 
-        return $this->currencies[$currency->getCode()];
+        return $this->currencies[$currency->getCurrencyCode()];
     }
 
     /** {@inheritDoc} */

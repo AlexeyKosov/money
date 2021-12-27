@@ -99,8 +99,8 @@ final class CurrencyPair implements JsonSerializable
      */
     public function equals(CurrencyPair $other): bool
     {
-        return $this->baseCurrency->equals($other->baseCurrency)
-            && $this->counterCurrency->equals($other->counterCurrency)
+        return $this->baseCurrency->is($other->baseCurrency)
+            && $this->counterCurrency->is($other->counterCurrency)
             && $this->conversionRatio === $other->conversionRatio;
     }
 
