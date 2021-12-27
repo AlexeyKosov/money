@@ -37,12 +37,12 @@ final class MoneyOperationBench
 
     public function benchMultiply(): void
     {
-        $this->a->multiply('5');
+        $this->a->multipliedBy('5');
     }
 
     public function benchDivide(): void
     {
-        $this->a->divide('5');
+        $this->a->dividedBy('5');
     }
 
     public function benchSum(): void

@@ -89,7 +89,7 @@ final class MoneyTest extends TestCase
     {
         $money = new Money(1, new Currency(self::CURRENCY));
 
-        $money = $money->multiply($multiplier, $roundingMode);
+        $money = $money->multipliedBy($multiplier, $roundingMode);
 
         self::assertInstanceOf(Money::class, $money);
         self::assertEquals($result, $money->getAmount());
@@ -103,7 +103,7 @@ final class MoneyTest extends TestCase
         $this->setLocale(LC_ALL, 'es_ES.utf8');
 
         $money = new Money(100, new Currency(self::CURRENCY));
-        $money = $money->multiply('0.1');
+        $money = $money->multipliedBy('0.1');
 
         self::assertInstanceOf(Money::class, $money);
         self::assertEquals('10', $money->getAmount());
@@ -122,9 +122,9 @@ final class MoneyTest extends TestCase
         self::assertEquals(
             $result,
             (new Money(1, new Currency(self::CURRENCY)))
-                ->multiply($divisor, $roundingMode)
-                ->multiply($divisor, $roundingMode)
-                ->divide($divisor, $roundingMode)
+                ->multipliedBy($divisor, $roundingMode)
+                ->multipliedBy($divisor, $roundingMode)
+                ->dividedBy($divisor, $roundingMode)
                 ->getAmount(),
             'Our dataset does not contain a lot of data around divisions: we abuse multiplication to verify inverse function properties'
         );

@@ -67,7 +67,7 @@ final class Converter
             ->base10($subunitDifference)
             ->__toString();
 
-        $counterValue = $money->multiply($ratio, $roundingMode);
+        $counterValue = $money->multipliedBy($ratio, $roundingMode);
 
         return new Money($counterValue->getAmount(), $currencyPair->getCounterCurrency());
     }
