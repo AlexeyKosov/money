@@ -125,13 +125,18 @@ final class Money implements JsonSerializable
         return new Money((string)$minorAmount, $currency);
     }
 
+    public static function zero(Currency|string $currency): Money
+    {
+        return self::of(0, $currency);
+    }
+
     /**
      * @return float
      */
     public function getAmountFloat(): float
     {
         $decimals = (new ISOCurrencies())->subunitFor($this->currency);
-        return (float)$this->amount / 10**$decimals;
+        return round((float)$this->amount / 10**$decimals, $decimals);
     }
 
     /**
