@@ -31,7 +31,7 @@ final class DecimalMoneyParserTest extends TestCase
 
         $parser = new DecimalMoneyParser($currencies);
 
-        self::assertEquals($result, $parser->parse($decimal, new Currency($currency))->getAmount());
+        self::assertEquals($result, $parser->parse($decimal, new Currency($currency))->getAmountString());
     }
 
     /**

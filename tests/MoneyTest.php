@@ -92,7 +92,7 @@ final class MoneyTest extends TestCase
         $money = $money->multipliedBy($multiplier, $roundingMode);
 
         self::assertInstanceOf(Money::class, $money);
-        self::assertEquals($result, $money->getAmount());
+        self::assertEquals($result, $money->getAmountString());
     }
 
     /**
@@ -106,7 +106,7 @@ final class MoneyTest extends TestCase
         $money = $money->multipliedBy('0.1');
 
         self::assertInstanceOf(Money::class, $money);
-        self::assertEquals('10', $money->getAmount());
+        self::assertEquals('10', $money->getAmountString());
     }
 
     /**
@@ -125,7 +125,7 @@ final class MoneyTest extends TestCase
                 ->multipliedBy($divisor, $roundingMode)
                 ->multipliedBy($divisor, $roundingMode)
                 ->dividedBy($divisor, $roundingMode)
-                ->getAmount(),
+                ->getAmountString(),
             'Our dataset does not contain a lot of data around divisions: we abuse multiplication to verify inverse function properties'
         );
     }
@@ -220,7 +220,7 @@ final class MoneyTest extends TestCase
 
         $money = $money->abs();
 
-        self::assertEquals($result, $money->getAmount());
+        self::assertEquals($result, $money->getAmountString());
     }
 
     /**
@@ -236,7 +236,7 @@ final class MoneyTest extends TestCase
 
         $money = $money->negated();
 
-        self::assertEquals($result, $money->getAmount());
+        self::assertEquals($result, $money->getAmountString());
     }
 
     /**
@@ -255,7 +255,7 @@ final class MoneyTest extends TestCase
         $money = $money->mod($rightMoney);
 
         self::assertInstanceOf(Money::class, $money);
-        self::assertEquals($expected, $money->getAmount());
+        self::assertEquals($expected, $money->getAmountString());
     }
 
     /**

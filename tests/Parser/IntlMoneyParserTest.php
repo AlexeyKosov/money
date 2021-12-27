@@ -37,7 +37,7 @@ final class IntlMoneyParserTest extends TestCase
         $currency     = new Currency($currencyCode);
 
         $parser = new IntlMoneyParser($formatter, $currencies);
-        self::assertEquals($units, $parser->parse($string, $currency)->getAmount());
+        self::assertEquals($units, $parser->parse($string, $currency)->getAmountString());
     }
 
     /**
@@ -83,7 +83,7 @@ final class IntlMoneyParserTest extends TestCase
         $parser       = new IntlMoneyParser($formatter, new ISOCurrencies());
         $money        = $parser->parse('$1000.00', $currency);
 
-        self::assertEquals('100000', $money->getAmount());
+        self::assertEquals('100000', $money->getAmountString());
         self::assertEquals('CAD', $money->getCurrency()->getCode());
     }
 
@@ -99,7 +99,7 @@ final class IntlMoneyParserTest extends TestCase
         $parser = new IntlMoneyParser($formatter, new ISOCurrencies());
         $money  = $parser->parse('$1000.005');
 
-        self::assertEquals('100001', $money->getAmount());
+        self::assertEquals('100001', $money->getAmountString());
     }
 
     /**
@@ -117,7 +117,7 @@ final class IntlMoneyParserTest extends TestCase
         $parser = new IntlMoneyParser($formatter, new ISOCurrencies());
         $money  = $parser->parse('$1000.005');
 
-        self::assertEquals('100001', $money->getAmount());
+        self::assertEquals('100001', $money->getAmountString());
     }
 
     /**

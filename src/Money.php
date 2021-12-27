@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Money;
 
+use Brick\Math\BigDecimal;
 use InvalidArgumentException;
 use JsonSerializable;
 use Money\Calculator\BcMathCalculator;
@@ -135,8 +136,7 @@ final class Money implements JsonSerializable
      */
     public function getAmountFloat(): float
     {
-        $decimals = (new ISOCurrencies())->subunitFor($this->currency);
-        return round((float)$this->amount / 10**$decimals, $decimals);
+        return $this->getAmount()->toFloat();
     }
 
     /**
@@ -215,12 +215,17 @@ final class Money implements JsonSerializable
         return $this->compare($other) <= 0;
     }
 
+    public function getAmount() : BigDecimal
+    {
+        return BigDecimal::ofUnscaledValue($this->amount, $this->currency->getDefaultFractionDigits());
+    }
+
     /**
      * Returns the value represented by this object.
      *
      * @psalm-return numeric-string
      */
-    public function getAmount(): string
+    public function getAmountString(): string
     {
         return $this->amount;
     }

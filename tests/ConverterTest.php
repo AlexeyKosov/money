@@ -67,7 +67,7 @@ final class ConverterTest extends TestCase
             $counterCurrency
         );
 
-        self::assertEquals($expectedAmount, $money->getAmount());
+        self::assertEquals($expectedAmount, $money->getAmountString());
         self::assertEquals($counterCurrencyCode, $money->getCurrency()->getCode());
     }
 
@@ -167,7 +167,7 @@ final class ConverterTest extends TestCase
             $pair
         );
 
-        self::assertEquals($expectedAmount, $money->getAmount());
+        self::assertEquals($expectedAmount, $money->getAmountString());
         self::assertEquals($counterCurrencyCode, $money->getCurrency()->getCode());
     }
 

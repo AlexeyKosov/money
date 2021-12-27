@@ -69,6 +69,6 @@ final class Converter
 
         $counterValue = $money->multipliedBy($ratio, $roundingMode);
 
-        return new Money($counterValue->getAmount(), $currencyPair->getCounterCurrency());
+        return new Money($counterValue->getAmountString(), $currencyPair->getCounterCurrency());
     }
 }

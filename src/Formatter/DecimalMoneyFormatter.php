@@ -27,7 +27,7 @@ final class DecimalMoneyFormatter implements MoneyFormatter
 
     public function format(Money $money): string
     {
-        $valueBase = $money->getAmount();
+        $valueBase = $money->getAmountString();
         $negative  = $valueBase[0] === '-';
 
         if ($negative) {

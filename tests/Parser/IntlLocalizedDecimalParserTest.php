@@ -37,7 +37,7 @@ final class IntlLocalizedDecimalParserTest extends TestCase
         $currency     = new Currency($currencyCode);
 
         $parser = new IntlLocalizedDecimalParser($formatter, $currencies);
-        self::assertEquals($units, $parser->parse($string, $currency)->getAmount());
+        self::assertEquals($units, $parser->parse($string, $currency)->getAmountString());
     }
 
     /**
@@ -78,7 +78,7 @@ final class IntlLocalizedDecimalParserTest extends TestCase
         $parser   = new IntlLocalizedDecimalParser($formatter, new ISOCurrencies());
         $money    = $parser->parse('1000.00', $currency);
 
-        self::assertSame('100000', $money->getAmount());
+        self::assertSame('100000', $money->getAmountString());
         self::assertSame('CAD', $money->getCurrency()->getCode());
     }
 
@@ -93,7 +93,7 @@ final class IntlLocalizedDecimalParserTest extends TestCase
         $parser = new IntlLocalizedDecimalParser($formatter, new ISOCurrencies());
         $money  = $parser->parse('1000.005', new Currency('USD'));
 
-        self::assertSame('100001', $money->getAmount());
+        self::assertSame('100001', $money->getAmountString());
     }
 
     /**

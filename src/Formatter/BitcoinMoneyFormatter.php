@@ -37,7 +37,7 @@ final class BitcoinMoneyFormatter implements MoneyFormatter
             throw new FormatterException('Bitcoin Formatter can only format Bitcoin currency');
         }
 
-        $valueBase = $money->getAmount();
+        $valueBase = $money->getAmountString();
         $negative  = false;
 
         if ($valueBase[0] === '-') {
